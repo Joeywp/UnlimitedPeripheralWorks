@@ -35,4 +35,9 @@ class CreateFilterableBehavior(
 
         return MethodResult.of(false)
     }
+
+    @LuaFunction(mainThread = true)
+    fun clearFilterItem(): MethodResult {
+        return setFilterItem("minecraft:air")
+    }
 }

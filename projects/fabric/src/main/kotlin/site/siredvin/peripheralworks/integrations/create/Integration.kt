@@ -1,5 +1,6 @@
 package site.siredvin.peripheralworks.integrations.create
 
+import com.simibubi.create.content.contraptions.elevator.ElevatorPulleyBlockEntity
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour
@@ -19,8 +20,12 @@ class Integration : Runnable {
 
         override fun provide(level: Level, pos: BlockPos, side: Direction): IPeripheralPlugin? {
             val blockEntity = level.getBlockEntity(pos)
-            if (Configuration.enableCreate && blockEntity is BlazeBurnerBlockEntity) {
+            if (!Configuration.enableCreate || blockEntity == null) return null
+
+            if (blockEntity is BlazeBurnerBlockEntity) {
                 return CreateBlazeBurner(blockEntity)
+            } else if (blockEntity is ElevatorPulleyBlockEntity) {
+                return CreateElevatorPulley(blockEntity)
             } else if (blockEntity is SmartBlockEntity) {
                 val filterBehavior = blockEntity.getBehaviour(FilteringBehaviour.TYPE)
                 if (filterBehavior != null) {
