@@ -1,6 +1,7 @@
 package site.siredvin.peripheralworks.integrations.create
 
 import com.simibubi.create.content.contraptions.elevator.ElevatorPulleyBlockEntity
+import com.simibubi.create.content.contraptions.pulley.PulleyBlockEntity
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour
@@ -26,6 +27,8 @@ class Integration : Runnable {
                 return CreateBlazeBurner(blockEntity)
             } else if (blockEntity is ElevatorPulleyBlockEntity) {
                 return CreateElevatorPulley(blockEntity)
+            } else if (blockEntity is PulleyBlockEntity) {
+                return CreatePulley(blockEntity)
             } else if (blockEntity is SmartBlockEntity) {
                 val filterBehavior = blockEntity.getBehaviour(FilteringBehaviour.TYPE)
                 if (filterBehavior != null) {

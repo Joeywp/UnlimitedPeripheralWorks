@@ -7,13 +7,12 @@ import dan200.computercraft.api.lua.LuaFunction
 import dan200.computercraft.api.lua.MethodResult
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
-import site.siredvin.peripheralium.api.peripheral.IPeripheralPlugin
 import site.siredvin.peripheralium.xplat.XplatRegistries
 
 class CreateFilterableBehavior(
-    private val basinBlockEntity: SmartBlockEntity,
+    blockEntity: SmartBlockEntity,
     private val filterableBehavior: FilteringBehaviour,
-) : IPeripheralPlugin {
+) : CreateSmartBlock<SmartBlockEntity>(blockEntity) {
     @LuaFunction(mainThread = true)
     fun getFilterName(): MethodResult {
         return MethodResult.of(filterableBehavior.filter?.item?.let {

@@ -4,13 +4,12 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity.FuelType.*
 import dan200.computercraft.api.lua.LuaFunction
 import dan200.computercraft.api.lua.MethodResult
-import site.siredvin.peripheralium.api.peripheral.IPeripheralPlugin
 
-class CreateBlazeBurner(private val blazeBurnerBlockEntity: BlazeBurnerBlockEntity) : IPeripheralPlugin {
+class CreateBlazeBurner(blockEntity: BlazeBurnerBlockEntity) : CreateSmartBlock<BlazeBurnerBlockEntity>(blockEntity) {
     @LuaFunction(mainThread = true)
     fun getFuelType(): MethodResult {
         return MethodResult.of(
-            when (blazeBurnerBlockEntity.activeFuel) {
+            when (blockEntity.activeFuel) {
                 NONE -> "none"
                 NORMAL -> "normal"
                 SPECIAL -> "special"
@@ -21,6 +20,6 @@ class CreateBlazeBurner(private val blazeBurnerBlockEntity: BlazeBurnerBlockEnti
 
     @LuaFunction(mainThread = true)
     fun getRemainingBurnTime(): MethodResult {
-        return MethodResult.of(blazeBurnerBlockEntity.remainingBurnTime)
+        return MethodResult.of(blockEntity.remainingBurnTime)
     }
 }
