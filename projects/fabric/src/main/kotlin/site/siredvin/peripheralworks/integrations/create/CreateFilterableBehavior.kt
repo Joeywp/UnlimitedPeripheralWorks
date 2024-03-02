@@ -1,6 +1,7 @@
 package site.siredvin.peripheralworks.integrations.create
 
-import com.simibubi.create.content.processing.basin.BasinBlockEntity
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
+import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour
 import dan200.computercraft.api.lua.LuaException
 import dan200.computercraft.api.lua.LuaFunction
 import dan200.computercraft.api.lua.MethodResult
@@ -9,10 +10,13 @@ import net.minecraft.world.item.ItemStack
 import site.siredvin.peripheralium.api.peripheral.IPeripheralPlugin
 import site.siredvin.peripheralium.xplat.XplatRegistries
 
-class CreateBasin(private val basinBlockEntity: BasinBlockEntity) : IPeripheralPlugin {
+class CreateFilterableBehavior(
+    private val basinBlockEntity: SmartBlockEntity,
+    private val filterableBehavior: FilteringBehaviour,
+) : IPeripheralPlugin {
     @LuaFunction(mainThread = true)
     fun getFilterName(): MethodResult {
-        return MethodResult.of(basinBlockEntity.filter.filter?.item?.let {
+        return MethodResult.of(filterableBehavior.filter?.item?.let {
             XplatRegistries.ITEMS.getKey(it).toString()
         })
     }
@@ -26,8 +30,7 @@ class CreateBasin(private val basinBlockEntity: BasinBlockEntity) : IPeripheralP
         }
 
         if (item != null) {
-            basinBlockEntity.filter.setFilter(ItemStack(item, 1))
-            return MethodResult.of(true)
+            return MethodResult.of(filterableBehavior.setFilter(ItemStack(item, 1)))
         }
 
         return MethodResult.of(false)
