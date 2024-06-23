@@ -4,7 +4,6 @@ import dan200.computercraft.api.lua.IArguments
 import dan200.computercraft.api.lua.LuaException
 import dan200.computercraft.api.lua.LuaFunction
 import dan200.computercraft.api.lua.MethodResult
-import net.minecraft.core.RegistryAccess
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Container
 import net.minecraft.world.item.crafting.Recipe
@@ -60,10 +59,12 @@ class RecipeRegistryPeripheral(
 
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
-        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type)
-            .filter { it.id == recipeID }
-            .map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) }
-            .toList())
+        return MethodResult.of(
+            level!!.recipeManager.getAllRecipesFor(type)
+                .filter { it.id == recipeID }
+                .map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) }
+                .toList(),
+        )
     }
 
     @LuaFunction

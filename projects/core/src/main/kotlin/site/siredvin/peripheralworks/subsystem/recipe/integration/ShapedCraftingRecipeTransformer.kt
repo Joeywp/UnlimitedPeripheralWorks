@@ -8,7 +8,7 @@ object ShapedCraftingRecipeTransformer : RecipeTransformer<CraftingContainer, Sh
     override fun getExtraData(recipe: ShapedRecipe): MutableMap<String, Any>? {
         return mutableMapOf(
             "width" to recipe.width,
-            "height" to recipe.height
+            "height" to recipe.height,
         )
     }
 }
