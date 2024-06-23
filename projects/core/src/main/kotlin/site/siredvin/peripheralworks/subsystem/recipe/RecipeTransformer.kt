@@ -1,5 +1,6 @@
 package site.siredvin.peripheralworks.subsystem.recipe
 
+import net.minecraft.core.RegistryAccess
 import net.minecraft.world.Container
 import net.minecraft.world.item.crafting.Recipe
 import java.util.*
@@ -9,9 +10,9 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 abstract class RecipeTransformer<V : Container, T : Recipe<V>> {
-    abstract fun getInputs(recipe: T): List<*>
+    abstract fun getInputs(recipe: T, registryAccess: RegistryAccess): List<*>
 
-    abstract fun getOutputs(recipe: T): List<*>
+    abstract fun getOutputs(recipe: T, registryAccess: RegistryAccess): List<*>
 
     fun getExtraData(@Suppress("UNUSED_PARAMETER") recipe: T): MutableMap<String, Any>? {
         return null
@@ -23,12 +24,12 @@ abstract class RecipeTransformer<V : Container, T : Recipe<V>> {
         }.collect(Collectors.toList<Any>())
     }
 
-    fun transform(recipe: T): Map<String, Any> {
+    fun transform(recipe: T, registryAccess: RegistryAccess): Map<String, Any> {
         val recipeData: MutableMap<String, Any> = HashMap()
         recipeData["id"] = recipe.id.toString()
         recipeData["type"] = recipe.type.toString()
-        recipeData["output"] = serializeIngredients(getOutputs(recipe))
-        recipeData["input"] = serializeIngredients(getInputs(recipe))
+        recipeData["output"] = serializeIngredients(getOutputs(recipe, registryAccess))
+        recipeData["input"] = serializeIngredients(getInputs(recipe, registryAccess))
         val extraData = getExtraData(recipe)
         if (extraData != null) {
             // extra cleanup

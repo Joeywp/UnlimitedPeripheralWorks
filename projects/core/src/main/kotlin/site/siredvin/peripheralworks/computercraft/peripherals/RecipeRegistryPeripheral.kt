@@ -58,7 +58,10 @@ class RecipeRegistryPeripheral(
 
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
-        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type).filter { it.id == recipeID }.map(RecipeRegistryToolkit::serializeRecipe).toList())
+        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type)
+            .filter { it.id == recipeID }
+            .map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) }
+            .toList())
     }
 
     @LuaFunction
@@ -72,9 +75,9 @@ class RecipeRegistryPeripheral(
             recipeTypes.flatMap {
                 @Suppress("UNCHECKED_CAST")
                 level!!.recipeManager.getAllRecipesFor(it as RecipeType<Recipe<Container>>).stream().filter { recipe ->
-                    recipe.getResultItem(RegistryAccess.EMPTY).`is`(targetItem)
+                    recipe.getResultItem(level!!.registryAccess()).`is`(targetItem)
                 }.toList()
-            },
+            }.map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) },
         )
     }
 

@@ -127,13 +127,13 @@ object RecipeRegistryToolkit {
         return obj
     }
 
-    fun serializeRecipe(recipe: Recipe<*>): Map<String, Any> {
+    fun serializeRecipe(recipe: Recipe<*>, registryAccess: RegistryAccess): Map<String, Any> {
         for (recipeClass in RECIPE_SERIALIZERS.keys) {
             @Suppress("UNCHECKED_CAST")
-            if (recipeClass.isInstance(recipe)) return RECIPE_SERIALIZERS[recipeClass]!!.transform(recipe as Recipe<Container>)
+            if (recipeClass.isInstance(recipe)) return RECIPE_SERIALIZERS[recipeClass]!!.transform(recipe as Recipe<Container>, registryAccess)
         }
         @Suppress("UNCHECKED_CAST")
-        return DefaultRecipeTransformer.transform(recipe as Recipe<Container>)
+        return DefaultRecipeTransformer.transform(recipe as Recipe<Container>, registryAccess)
     }
 
     @Throws(LuaException::class)
