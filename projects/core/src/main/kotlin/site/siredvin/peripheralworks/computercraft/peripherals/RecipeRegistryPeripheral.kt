@@ -26,6 +26,8 @@ class RecipeRegistryPeripheral(
         const val TYPE = "recipe_registry"
     }
 
+    val air = XplatRegistries.ITEMS.get(ResourceLocation("minecraft", "air"))
+
     override val isEnabled: Boolean
         get() = PeripheralWorksConfig.enableRecipeRegistry
 
@@ -69,7 +71,14 @@ class RecipeRegistryPeripheral(
     fun getRecipesFor(arguments: IArguments): MethodResult {
         val itemID: ResourceLocation = arguments.getResourceLocation(0)
         val types = arguments[1]
-        val targetItem = XplatRegistries.ITEMS.tryGet(itemID) ?: throw LuaException(String.format("Cannot find item with id %s", itemID))
+        val targetItem = XplatRegistries.ITEMS.tryGet(itemID)
+
+        if (targetItem == null || targetItem == air) {
+            // Item registry may return AIR when the item is not found, and I hope no
+            // one ever needs minecraft:air to be craftable...
+            throw LuaException(String.format("Cannot find item with id %s", itemID))
+        }
+
         val recipeTypes = RecipeRegistryToolkit.collectRecipeTypes(types)
         return MethodResult.of(
             recipeTypes.flatMap {
