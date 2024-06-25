@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `registryID` added to `describe` function of informative registry
+
+### Fixed
+
+- Recipe registry is usable again
+
 ## [1.4.3] - 2024-02-01
 
 ### Changed
