@@ -48,7 +48,7 @@ class RecipeRegistryPeripheral(
 
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
-        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type).map { it.id })
+        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type).map { it.id.toString() })
     }
 
     @LuaFunction
