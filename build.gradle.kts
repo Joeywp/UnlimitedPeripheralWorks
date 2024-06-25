@@ -1,8 +1,8 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("site.siredvin.root") version "0.6.1"
-    id("site.siredvin.release") version "0.6.1"
-    id("com.dorongold.task-tree") version "2.1.1"
+    id("site.siredvin.root") version "0.6.2"
+    id("site.siredvin.release") version "0.6.2"
+    id("com.dorongold.task-tree") version "4.0.0"
 }
 
 subprojectShaking {
