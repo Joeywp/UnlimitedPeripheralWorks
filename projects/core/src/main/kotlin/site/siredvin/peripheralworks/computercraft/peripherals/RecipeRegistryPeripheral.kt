@@ -4,7 +4,6 @@ import dan200.computercraft.api.lua.IArguments
 import dan200.computercraft.api.lua.LuaException
 import dan200.computercraft.api.lua.LuaFunction
 import dan200.computercraft.api.lua.MethodResult
-import net.minecraft.core.RegistryAccess
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Container
 import net.minecraft.world.item.crafting.Recipe
@@ -25,6 +24,8 @@ class RecipeRegistryPeripheral(
     companion object {
         const val TYPE = "recipe_registry"
     }
+
+    val air = XplatRegistries.ITEMS.get(ResourceLocation("minecraft", "air"))
 
     override val isEnabled: Boolean
         get() = PeripheralWorksConfig.enableRecipeRegistry
@@ -58,7 +59,12 @@ class RecipeRegistryPeripheral(
 
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
-        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type).filter { it.id == recipeID }.map(RecipeRegistryToolkit::serializeRecipe).toList())
+        return MethodResult.of(
+            level!!.recipeManager.getAllRecipesFor(type)
+                .filter { it.id == recipeID }
+                .map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) }
+                .toList(),
+        )
     }
 
     @LuaFunction
@@ -66,15 +72,22 @@ class RecipeRegistryPeripheral(
     fun getRecipesFor(arguments: IArguments): MethodResult {
         val itemID: ResourceLocation = arguments.getResourceLocation(0)
         val types = arguments[1]
-        val targetItem = XplatRegistries.ITEMS.tryGet(itemID) ?: throw LuaException(String.format("Cannot find item with id %s", itemID))
+        val targetItem = XplatRegistries.ITEMS.tryGet(itemID)
+
+        if (targetItem == null || targetItem == air) {
+            // Item registry may return AIR when the item is not found, and I hope no
+            // one ever needs minecraft:air to be craftable...
+            throw LuaException(String.format("Cannot find item with id %s", itemID))
+        }
+
         val recipeTypes = RecipeRegistryToolkit.collectRecipeTypes(types)
         return MethodResult.of(
             recipeTypes.flatMap {
                 @Suppress("UNCHECKED_CAST")
                 level!!.recipeManager.getAllRecipesFor(it as RecipeType<Recipe<Container>>).stream().filter { recipe ->
-                    recipe.getResultItem(RegistryAccess.EMPTY).`is`(targetItem)
+                    recipe.getResultItem(level!!.registryAccess()).`is`(targetItem)
                 }.toList()
-            },
+            }.map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) },
         )
     }
 
