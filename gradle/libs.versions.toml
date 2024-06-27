@@ -1,6 +1,6 @@
 [versions]
 # Base libraries
-kotlin = "1.9.0"
+kotlin = "2.0.0"
 kotlin-coroutines = "1.6.4"
 kotlin-atomicfu = "0.20.2"
 # Gradle plugins
@@ -10,12 +10,12 @@ mixinGradle = "0.8.+"
 forgegradle = "6.+"
 # Core mod dependencies
 cc-tweaked = "1.111.0"
-peripheralium = "0.6.15"
+peripheralium = "0.6.16-pre.1"
 mixin = "0.8.5"
 # Fabric dependencies
-fabric-api = "0.87.0+1.20.1"
-fabric-loader = "0.14.21"
-fabric-kotlin = "1.10.0+kotlin.1.9.0"
+fabric-api = "0.92.0+1.20.1"
+fabric-loader = "0.15.11"
+fabric-kotlin = "1.11.0+kotlin.2.0.0"
 forgeconfigapirt-fabric = "8.0.0"
 modmenu = "7.2.1"
 # Forge dependencies
