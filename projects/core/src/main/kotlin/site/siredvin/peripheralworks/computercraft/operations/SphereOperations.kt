@@ -24,7 +24,7 @@ enum class SphereOperations(
         cooldown = builder.defineInRange(
             settingsName() + "Cooldown",
             defaultCooldown,
-            1000,
+            0,
             Int.MAX_VALUE,
         )
         max_free_radius = builder.defineInRange(

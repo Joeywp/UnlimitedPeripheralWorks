@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Recipe registry is usable again (by [Janrupf](https://github.com/Janrupf))
+- Cooldowns can be set to 0 now
 
 ## [1.4.3] - 2024-02-01
 
