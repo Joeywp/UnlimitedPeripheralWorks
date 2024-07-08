@@ -20,7 +20,7 @@ import site.siredvin.peripheralworks.xplat.*
 object PeripheralWorksCore {
     const val MOD_ID = "peripheralworks"
 
-    var LOGGER: Logger = LogManager.getLogger(MOD_ID)
+    var logger: Logger = LogManager.getLogger(MOD_ID)
 
     fun configureCreativeTab(builder: CreativeModeTab.Builder): CreativeModeTab.Builder {
         return builder.icon { Blocks.PERIPHERAL_CASING.get().asItem().defaultInstance }

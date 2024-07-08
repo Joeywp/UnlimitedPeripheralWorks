@@ -64,7 +64,7 @@ class EntityLinkBlockEntity(blockPos: BlockPos, blockState: BlockState) :
                 refreshEntity()
                 pushInternalDataChangeToClient(blockState.setValue(EntityLink.CONFIGURED, true))
             } else {
-                PeripheralWorksCore.LOGGER.warn("Something trying to set item that is not entity card to entity link!")
+                PeripheralWorksCore.logger.warn("Something trying to set item that is not entity card to entity link!")
             }
         }
 

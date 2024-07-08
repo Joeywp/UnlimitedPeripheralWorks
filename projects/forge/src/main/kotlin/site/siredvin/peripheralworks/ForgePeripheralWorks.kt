@@ -57,14 +57,14 @@ object ForgePeripheralWorks {
 
     val loader = ForgeIntegrationLoader(
         ForgePeripheralWorks::class.java.getPackage().name,
-        PeripheralWorksCore.LOGGER,
+        PeripheralWorksCore.logger,
     )
 
     init {
         ForgePeripheralium.sayHi()
         // Configure configuration
         val context = ModLoadingContext.get()
-        context.registerConfig(ModConfig.Type.COMMON, ConfigHolder.COMMON_SPEC, "${PeripheralWorksCore.MOD_ID}.toml")
+        context.registerConfig(ModConfig.Type.COMMON, ConfigHolder.commonSpec, "${PeripheralWorksCore.MOD_ID}.toml")
         PeripheralWorksCore.configure(ForgeModPlatform, ForgeModRecipeIngredients, ForgeModBlocksReference)
         val eventBus = MOD_CONTEXT.getKEventBus()
         eventBus.addListener(this::commonSetup)

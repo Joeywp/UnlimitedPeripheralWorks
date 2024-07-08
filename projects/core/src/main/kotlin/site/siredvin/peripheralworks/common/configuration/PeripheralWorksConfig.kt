@@ -12,95 +12,95 @@ object PeripheralWorksConfig : IOperationAbilityConfig {
     private val INTEGRATION_CONFIGURATIONS: MutableMap<String, IConfigHandler> = mutableMapOf()
 
     override val cooldownTresholdLevel: Int
-        get() = ConfigHolder.COMMON_CONFIG.COOLDOWN_TRESHOLD_LEVEL.get()
+        get() = ConfigHolder.commonConfig.cooldownThresholdLevel.get()
 
     val enableGenericInventory: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_GENERIC_INVENTORY.get()
+        get() = ConfigHolder.commonConfig.enableGenericInventory.get()
     val enableGenericItemStorage: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_GENERIC_ITEM_STORAGE.get()
+        get() = ConfigHolder.commonConfig.enableGenericItemStorage.get()
     val itemStorageTransferLimit: Int
-        get() = ConfigHolder.COMMON_CONFIG.ITEM_STORAGE_TRANSFER_LIMIT.get()
+        get() = ConfigHolder.commonConfig.itemStorageTransferLimit.get()
     val enableGenericFluidStorage: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_GENERIC_FLUID_STORAGE.get()
+        get() = ConfigHolder.commonConfig.enableGenericFluidStorage.get()
 
     val enableGenericEnergyStorage: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_GENERIC_FLUID_STORAGE.get()
+        get() = ConfigHolder.commonConfig.enableGenericFluidStorage.get()
     val fluidStorageTransferLimit: Int
-        get() = ConfigHolder.COMMON_CONFIG.FLUID_STORAGE_TRANSFER_LIMIT.get()
+        get() = ConfigHolder.commonConfig.fluidStorageTransferLimit.get()
 
     val enableBeacon: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_BEACON.get()
+        get() = ConfigHolder.commonConfig.enableBeacon.get()
     val enableNoteBlock: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_NOTEBLOCK.get()
+        get() = ConfigHolder.commonConfig.enableNotebook.get()
     val enableLectern: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_LECTERN.get()
+        get() = ConfigHolder.commonConfig.enableLentern.get()
     val enableJukebox: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_JUKEBOX.get()
+        get() = ConfigHolder.commonConfig.enableJukebox.get()
     val enablePoweredRail: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_POWERED_RAIL.get()
+        get() = ConfigHolder.commonConfig.enablePoweredRail.get()
 
     val enablePeripheraliumHubs: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_PERIPHERALIUM_HUBS.get()
+        get() = ConfigHolder.commonConfig.enablePeripheraliumHubs.get()
 
     val peripheraliumHubUpgradeCount: Int
-        get() = ConfigHolder.COMMON_CONFIG.PERIPHERALIUM_HUB_UPGRADE_COUNT.get()
+        get() = ConfigHolder.commonConfig.peripheraliumHubUpgradeCount.get()
 
     val netheritePeripheraliumHubUpgradeCount: Int
-        get() = ConfigHolder.COMMON_CONFIG.NETHERITE_PERIPHERALIUM_HUB_UPGRADE_COUNT.get()
+        get() = ConfigHolder.commonConfig.netheritePeripheraliumHubUpgradeCount.get()
 
     val enableUniversalScanner: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_UNIVERSAL_SCANNER.get()
+        get() = ConfigHolder.commonConfig.enableUniversalScanner.get()
 
     val enableUltimateSensor: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_UNIVERSAL_SCANNER.get()
+        get() = ConfigHolder.commonConfig.enableUniversalScanner.get()
 
     val enableItemPedestal: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_ITEM_PEDESTAL.get()
+        get() = ConfigHolder.commonConfig.enableItemPedestal.get()
 
     val enableMapPedestal: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_MAP_PEDESTAL.get()
+        get() = ConfigHolder.commonConfig.enableMapPedestal.get()
 
     val enableDisplayPedestal: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_MAP_PEDESTAL.get()
+        get() = ConfigHolder.commonConfig.enableMapPedestal.get()
 
     val enableRemoteObserver: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_REMOTE_OBSERVER.get()
+        get() = ConfigHolder.commonConfig.enableRemoteObserver.get()
 
     val remoteObserverMaxRange: Int
-        get() = ConfigHolder.COMMON_CONFIG.REMOTE_OBSERVER_MAX_RANGE.get()
+        get() = ConfigHolder.commonConfig.removeObserverMaxRange.get()
 
     val remoteObserverMaxCapacity: Int
-        get() = ConfigHolder.COMMON_CONFIG.REMOTE_OBSERVER_MAX_CAPACITY.get()
+        get() = ConfigHolder.commonConfig.removeObserverMaxCapacity.get()
 
     val enablePeripheralProxy: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_PERIPHERAL_PROXY.get()
+        get() = ConfigHolder.commonConfig.enablePeripheralProxy.get()
 
     val peripheralProxyMaxRange: Int
-        get() = ConfigHolder.COMMON_CONFIG.PERIPHERAL_PROXY_MAX_RANGE.get()
+        get() = ConfigHolder.commonConfig.peripheralProxyMaxRange.get()
 
     val peripheralProxyMaxCapacity: Int
-        get() = ConfigHolder.COMMON_CONFIG.PERIPHERAL_PROXY_MAX_CAPACITY.get()
+        get() = ConfigHolder.commonConfig.peripheralProxyMaxCapacity.get()
 
     val enableRealityForger: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_REALITY_FORGER.get()
+        get() = ConfigHolder.commonConfig.enableRealityForger.get()
 
     val realityForgerMaxRange: Int
-        get() = ConfigHolder.COMMON_CONFIG.REALITY_FORGER_MAX_RANGE.get()
+        get() = ConfigHolder.commonConfig.realityForgerMaxRange.get()
 
     val enableRecipeRegistry: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_RECIPE_REGISTRY.get()
+        get() = ConfigHolder.commonConfig.enableRecipeRegistry.get()
 
     val enableInformativeRegistry: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_INFORMATIVE_REGISTRY.get()
+        get() = ConfigHolder.commonConfig.enableInformativeRegistry.get()
 
     val enableStatueWorkbench: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_STATUE_WORKBENCH.get()
+        get() = ConfigHolder.commonConfig.enableStatueWorkbench.get()
 
     val flexibleStatueMaxQuads: Int
-        get() = ConfigHolder.COMMON_CONFIG.FLEXIBLE_STATUE_MAX_QUADS.get()
+        get() = ConfigHolder.commonConfig.flexibleStatueMaxQuads.get()
 
     val enableEntityLink: Boolean
-        get() = ConfigHolder.COMMON_CONFIG.ENABLE_ENTITY_LINK.get()
+        get() = ConfigHolder.commonConfig.enableEntityLinks.get()
 
     fun registerIntegrationConfiguration(configuration: IConfigHandler) {
         INTEGRATION_CONFIGURATIONS[configuration.name] = configuration
@@ -109,120 +109,120 @@ object PeripheralWorksConfig : IOperationAbilityConfig {
     class CommonConfig internal constructor(builder: ForgeConfigSpec.Builder) {
 
         // Generic configuration
-        var COOLDOWN_TRESHOLD_LEVEL: ForgeConfigSpec.IntValue
+        var cooldownThresholdLevel: ForgeConfigSpec.IntValue
 
         // Generic plugins
-        var ENABLE_GENERIC_INVENTORY: ForgeConfigSpec.BooleanValue
-        var ENABLE_GENERIC_ITEM_STORAGE: ForgeConfigSpec.BooleanValue
-        var ENABLE_GENERIC_FLUID_STORAGE: ForgeConfigSpec.BooleanValue
-        var ENABLE_GENERIC_ENERGY_STORAGE: ForgeConfigSpec.BooleanValue
-        val ITEM_STORAGE_TRANSFER_LIMIT: ForgeConfigSpec.IntValue
-        val FLUID_STORAGE_TRANSFER_LIMIT: ForgeConfigSpec.IntValue
+        var enableGenericInventory: ForgeConfigSpec.BooleanValue
+        var enableGenericItemStorage: ForgeConfigSpec.BooleanValue
+        var enableGenericFluidStorage: ForgeConfigSpec.BooleanValue
+        var enableGenericEnergyStorage: ForgeConfigSpec.BooleanValue
+        val itemStorageTransferLimit: ForgeConfigSpec.IntValue
+        val fluidStorageTransferLimit: ForgeConfigSpec.IntValue
 
         // Specific plugins
-        var ENABLE_BEACON: ForgeConfigSpec.BooleanValue
-        var ENABLE_NOTEBLOCK: ForgeConfigSpec.BooleanValue
-        var ENABLE_LECTERN: ForgeConfigSpec.BooleanValue
-        var ENABLE_JUKEBOX: ForgeConfigSpec.BooleanValue
-        var ENABLE_POWERED_RAIL: ForgeConfigSpec.BooleanValue
+        var enableBeacon: ForgeConfigSpec.BooleanValue
+        var enableNotebook: ForgeConfigSpec.BooleanValue
+        var enableLentern: ForgeConfigSpec.BooleanValue
+        var enableJukebox: ForgeConfigSpec.BooleanValue
+        var enablePoweredRail: ForgeConfigSpec.BooleanValue
 
         // Peripheralium hubs
-        val ENABLE_PERIPHERALIUM_HUBS: ForgeConfigSpec.BooleanValue
-        val PERIPHERALIUM_HUB_UPGRADE_COUNT: ForgeConfigSpec.IntValue
-        val NETHERITE_PERIPHERALIUM_HUB_UPGRADE_COUNT: ForgeConfigSpec.IntValue
-        val ENABLE_UNIVERSAL_SCANNER: ForgeConfigSpec.BooleanValue
-        val ENABLE_ULTIMATE_SENSOR: ForgeConfigSpec.BooleanValue
-        val ENABLE_ITEM_PEDESTAL: ForgeConfigSpec.BooleanValue
-        val ENABLE_MAP_PEDESTAL: ForgeConfigSpec.BooleanValue
-        val ENABLE_DISPLAY_PEDESTAL: ForgeConfigSpec.BooleanValue
-        val ENABLE_REMOTE_OBSERVER: ForgeConfigSpec.BooleanValue
-        val REMOTE_OBSERVER_MAX_RANGE: ForgeConfigSpec.IntValue
-        val REMOTE_OBSERVER_MAX_CAPACITY: ForgeConfigSpec.IntValue
-        val ENABLE_PERIPHERAL_PROXY: ForgeConfigSpec.BooleanValue
-        val PERIPHERAL_PROXY_MAX_RANGE: ForgeConfigSpec.IntValue
-        val PERIPHERAL_PROXY_MAX_CAPACITY: ForgeConfigSpec.IntValue
-        val ENABLE_REALITY_FORGER: ForgeConfigSpec.BooleanValue
-        val REALITY_FORGER_MAX_RANGE: ForgeConfigSpec.IntValue
-        val ENABLE_RECIPE_REGISTRY: ForgeConfigSpec.BooleanValue
-        val ENABLE_INFORMATIVE_REGISTRY: ForgeConfigSpec.BooleanValue
-        val ENABLE_STATUE_WORKBENCH: ForgeConfigSpec.BooleanValue
-        val FLEXIBLE_STATUE_MAX_QUADS: ForgeConfigSpec.IntValue
-        val ENABLE_ENTITY_LINK: ForgeConfigSpec.BooleanValue
+        val enablePeripheraliumHubs: ForgeConfigSpec.BooleanValue
+        val peripheraliumHubUpgradeCount: ForgeConfigSpec.IntValue
+        val netheritePeripheraliumHubUpgradeCount: ForgeConfigSpec.IntValue
+        val enableUniversalScanner: ForgeConfigSpec.BooleanValue
+        val enableUltimateSensor: ForgeConfigSpec.BooleanValue
+        val enableItemPedestal: ForgeConfigSpec.BooleanValue
+        val enableMapPedestal: ForgeConfigSpec.BooleanValue
+        val enableDisplayPedestal: ForgeConfigSpec.BooleanValue
+        val enableRemoteObserver: ForgeConfigSpec.BooleanValue
+        val removeObserverMaxRange: ForgeConfigSpec.IntValue
+        val removeObserverMaxCapacity: ForgeConfigSpec.IntValue
+        val enablePeripheralProxy: ForgeConfigSpec.BooleanValue
+        val peripheralProxyMaxRange: ForgeConfigSpec.IntValue
+        val peripheralProxyMaxCapacity: ForgeConfigSpec.IntValue
+        val enableRealityForger: ForgeConfigSpec.BooleanValue
+        val realityForgerMaxRange: ForgeConfigSpec.IntValue
+        val enableRecipeRegistry: ForgeConfigSpec.BooleanValue
+        val enableInformativeRegistry: ForgeConfigSpec.BooleanValue
+        val enableStatueWorkbench: ForgeConfigSpec.BooleanValue
+        val flexibleStatueMaxQuads: ForgeConfigSpec.IntValue
+        val enableEntityLinks: ForgeConfigSpec.BooleanValue
 
         init {
             builder.push("base")
-            COOLDOWN_TRESHOLD_LEVEL = builder.comment("Determinates treshold for cooldown to be stored")
+            cooldownThresholdLevel = builder.comment("Determinates treshold for cooldown to be stored")
                 .defineInRange("cooldownTreshholdLevel", 100, 0, Int.MAX_VALUE)
             builder.pop()
             builder.push("plugins")
             builder.push("generic")
-            ENABLE_GENERIC_INVENTORY = builder.comment("Enables generic integration for inventory types of block entities")
+            enableGenericInventory = builder.comment("Enables generic integration for inventory types of block entities")
                 .define("enableGenericInventory", true)
-            ENABLE_GENERIC_ITEM_STORAGE = builder.comment("Enables generic integration for item storages, that are not covered by inventory integration")
+            enableGenericItemStorage = builder.comment("Enables generic integration for item storages, that are not covered by inventory integration")
                 .define("enableGenericItemStorage", true)
-            ENABLE_GENERIC_FLUID_STORAGE = builder.comment("Enables generic integration for fluid storages")
+            enableGenericFluidStorage = builder.comment("Enables generic integration for fluid storages")
                 .define("enableGenericFluidStorage", true)
-            ENABLE_GENERIC_ENERGY_STORAGE = builder.comment("Enables generic integration for energy storages")
+            enableGenericEnergyStorage = builder.comment("Enables generic integration for energy storages")
                 .define("enableGenericEnergyStorage", true)
-            ITEM_STORAGE_TRANSFER_LIMIT = builder.comment("Limits max item transfer per one operation")
+            itemStorageTransferLimit = builder.comment("Limits max item transfer per one operation")
                 .defineInRange("itemStorageTransferLimit", 128, 1, Int.MAX_VALUE)
-            FLUID_STORAGE_TRANSFER_LIMIT = builder.comment("Limits max fluid transfer per one operation")
+            fluidStorageTransferLimit = builder.comment("Limits max fluid transfer per one operation")
                 .defineInRange("fluidStorageTransferLimit", 65500 * PeripheraliumPlatform.fluidCompactDivider.toInt(), 1, Int.MAX_VALUE)
             builder.pop()
             builder.push("specific")
-            ENABLE_BEACON = builder.comment("Enables integration for minecraft beacon")
+            enableBeacon = builder.comment("Enables integration for minecraft beacon")
                 .define("enableBeacon", true)
-            ENABLE_NOTEBLOCK = builder.comment("Enables integration for minecraft note block")
+            enableNotebook = builder.comment("Enables integration for minecraft note block")
                 .define("enableNoteBlock", true)
-            ENABLE_LECTERN = builder.comment("Enables integration for minecraft lectern")
+            enableLentern = builder.comment("Enables integration for minecraft lectern")
                 .define("enableLectern", true)
-            ENABLE_JUKEBOX = builder.comment("Enables integration for minecraft jukebox")
+            enableJukebox = builder.comment("Enables integration for minecraft jukebox")
                 .define("enableJukebox", true)
-            ENABLE_POWERED_RAIL = builder.comment("Enables integration for minecraft powered rail")
+            enablePoweredRail = builder.comment("Enables integration for minecraft powered rail")
                 .define("enablePoweredRail", true)
             builder.pop()
             builder.push("Peripherals")
-            ENABLE_PERIPHERALIUM_HUBS = builder.comment("Enables peripheralium hubs (regular one and netherite versions), which allows you to use many peripherals in one")
+            enablePeripheraliumHubs = builder.comment("Enables peripheralium hubs (regular one and netherite versions), which allows you to use many peripherals in one")
                 .define("enablePeripheraliumHubs", true)
-            PERIPHERALIUM_HUB_UPGRADE_COUNT = builder.comment("Regulare amount of upgrades that can be installed on peripheralium hub")
+            peripheraliumHubUpgradeCount = builder.comment("Regulare amount of upgrades that can be installed on peripheralium hub")
                 .defineInRange("peripheraliumHubUpgradeCount", 3, 1, 64)
-            NETHERITE_PERIPHERALIUM_HUB_UPGRADE_COUNT = builder.comment("Regulare amount of upgrades that can be installed on netherite peripheralium hub")
+            netheritePeripheraliumHubUpgradeCount = builder.comment("Regulare amount of upgrades that can be installed on netherite peripheralium hub")
                 .defineInRange("netheritePeripheraliumHubUpgradeCount", 7, 1, 64)
-            ENABLE_UNIVERSAL_SCANNER = builder.comment("Enables universal scanner")
+            enableUniversalScanner = builder.comment("Enables universal scanner")
                 .define("enableUniversalScanner", true)
-            ENABLE_ULTIMATE_SENSOR = builder.comment("Enables ultimate sensor")
+            enableUltimateSensor = builder.comment("Enables ultimate sensor")
                 .define("enableUltimateSensor", true)
-            ENABLE_ITEM_PEDESTAL = builder.comment("Enables item pedestal nbt reading")
+            enableItemPedestal = builder.comment("Enables item pedestal nbt reading")
                 .define("enableItemPedestal", true)
-            ENABLE_MAP_PEDESTAL = builder.comment("Enables map pedestal, for detail map information reading")
+            enableMapPedestal = builder.comment("Enables map pedestal, for detail map information reading")
                 .define("enableMapPedestal", true)
-            ENABLE_DISPLAY_PEDESTAL = builder.comment("Enables display pedestal")
+            enableDisplayPedestal = builder.comment("Enables display pedestal")
                 .define("enableDisplayPedestal", true)
-            ENABLE_REMOTE_OBSERVER = builder.comment("Enables remote observer")
+            enableRemoteObserver = builder.comment("Enables remote observer")
                 .define("enableRemoteObserver", true)
-            REMOTE_OBSERVER_MAX_RANGE = builder.comment("Max range for remote observer")
+            removeObserverMaxRange = builder.comment("Max range for remote observer")
                 .defineInRange("remoteObserverMaxRange", 16, 1, 128)
-            REMOTE_OBSERVER_MAX_CAPACITY = builder.comment("Max capacity for remote observer")
+            removeObserverMaxCapacity = builder.comment("Max capacity for remote observer")
                 .defineInRange("remoteObserverMaxCapacity", 8, 1, 128)
-            ENABLE_PERIPHERAL_PROXY = builder.comment("Enables remote observer")
+            enablePeripheralProxy = builder.comment("Enables remote observer")
                 .define("enableRemoteObserver", true)
-            PERIPHERAL_PROXY_MAX_RANGE = builder.comment("Max range for peripheral proxy")
+            peripheralProxyMaxRange = builder.comment("Max range for peripheral proxy")
                 .defineInRange("peripheralProxyMaxRange", 16, 1, 128)
-            PERIPHERAL_PROXY_MAX_CAPACITY = builder.comment("Max capacity for peripheral proxy")
+            peripheralProxyMaxCapacity = builder.comment("Max capacity for peripheral proxy")
                 .defineInRange("peripheralProxyMaxCapacity", 8, 1, 128)
-            ENABLE_REALITY_FORGER = builder.comment("Enable reality forger")
+            enableRealityForger = builder.comment("Enable reality forger")
                 .define("enableRealityForger", true)
-            REALITY_FORGER_MAX_RANGE = builder.comment("Reality forger max range for forging")
+            realityForgerMaxRange = builder.comment("Reality forger max range for forging")
                 .defineInRange("realityForgerMaxRange", 24, 1, 256)
-            ENABLE_RECIPE_REGISTRY = builder.comment("Enables recipe registry")
+            enableRecipeRegistry = builder.comment("Enables recipe registry")
                 .define("enableRecipeRegistry", true)
-            ENABLE_INFORMATIVE_REGISTRY = builder.comment("Enables informative registry")
+            enableInformativeRegistry = builder.comment("Enables informative registry")
                 .define("enableInformativeRegistry", true)
-            ENABLE_STATUE_WORKBENCH = builder.comment("Enables statue workbench")
+            enableStatueWorkbench = builder.comment("Enables statue workbench")
                 .define("enableStatueWorkbench", true)
-            FLEXIBLE_STATUE_MAX_QUADS = builder.comment("Max quads amount for flexible statue, will be applied only for newest ones")
+            flexibleStatueMaxQuads = builder.comment("Max quads amount for flexible statue, will be applied only for newest ones")
                 .defineInRange("flexibleStatueMaxQuads", 256, 64, Int.MAX_VALUE)
-            ENABLE_ENTITY_LINK = builder.comment("Enables entity link")
+            enableEntityLinks = builder.comment("Enables entity link")
                 .define("enableEntityLink", true)
             builder.pop().pop()
             builder.push("operations")

@@ -88,13 +88,13 @@ class Integration : Runnable {
             }
             return buffer
         } catch (ignored: FileSystemException) {
-            PeripheralWorksCore.LOGGER.warn("File system exception when trying to get ccAspect from ${it.blockPos}")
-            PeripheralWorksCore.LOGGER.error(ignored)
+            PeripheralWorksCore.logger.warn("File system exception when trying to get ccAspect from ${it.blockPos}")
+            PeripheralWorksCore.logger.error(ignored)
             return EMPTY_TAG
         } catch (ignored: IllegalStateException) {
             if (!isExceptionExpected(ignored)) {
-                PeripheralWorksCore.LOGGER.warn("Illegal state exception when trying to get ccAspect from ${it.blockPos}")
-                PeripheralWorksCore.LOGGER.error(ignored)
+                PeripheralWorksCore.logger.warn("Illegal state exception when trying to get ccAspect from ${it.blockPos}")
+                PeripheralWorksCore.logger.error(ignored)
             }
             return EMPTY_TAG
         }
@@ -107,7 +107,7 @@ class Integration : Runnable {
             .handle {
                 ValueTypeNbt.ValueNbt.of(collectFileValues(it))
             }.withUpdateType(AspectUpdateType.NETWORK_TICK).buildRead()
-        AspectRegistry.getInstance().register(PartTypes.MACHINE_READER, ccAspect)
+        if (Configuration.enableComputerAspect) AspectRegistry.getInstance().register(PartTypes.MACHINE_READER, ccAspect)
         PeripheralWorksConfig.registerIntegrationConfiguration(Configuration)
 
         ModLanguageProvider.addExpectedKey("aspect.integrateddynamics.read.nbt.cc_folder")

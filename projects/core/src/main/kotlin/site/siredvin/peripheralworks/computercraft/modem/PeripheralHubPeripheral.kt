@@ -35,7 +35,11 @@ abstract class PeripheralHubPeripheral<O : IPeripheralOwner>(peripheralType: Str
         synchronized(peripheralsRecord) {
             connectedComputersLock.withLock {
                 if (remotePeripherals.contains(peripheral)) return
-                val peripheralName = if (useInternalID) { internalID } else { selectName(peripheral) }
+                val peripheralName = if (useInternalID) {
+                    internalID
+                } else {
+                    selectName(peripheral)
+                }
                 val record = PeripheralRecord(peripheral, peripheralName, internalID, this)
                 connectedComputers.forEach { computer: IComputerAccess -> record.attach(computer) }
                 remotePeripherals.add(peripheral)

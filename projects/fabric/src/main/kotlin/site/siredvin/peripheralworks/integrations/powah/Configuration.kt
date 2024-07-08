@@ -5,40 +5,40 @@ import site.siredvin.peripheralium.api.config.IConfigHandler
 
 object Configuration : IConfigHandler {
 
-    private var ENABLE_ENERGY: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_GENERATOR: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_ENDER_CELL: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_REACTOR: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_REDSTONE_CONTROL: ForgeConfigSpec.BooleanValue? = null
+    private var enableEnergyConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableGeneraotrConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableEnergyCellConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableReactorConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableRedstoneControlConfig: ForgeConfigSpec.BooleanValue? = null
 
     val enableEnergy: Boolean
-        get() = ENABLE_ENERGY?.get() ?: true
+        get() = enableEnergyConfig?.get() ?: true
 
     val enableGenerator: Boolean
-        get() = ENABLE_GENERATOR?.get() ?: true
+        get() = enableGeneraotrConfig?.get() ?: true
 
     val enableEnderCell: Boolean
-        get() = ENABLE_ENDER_CELL?.get() ?: true
+        get() = enableEnergyCellConfig?.get() ?: true
 
     val enableReactor: Boolean
-        get() = ENABLE_REACTOR?.get() ?: true
+        get() = enableReactorConfig?.get() ?: true
 
     val enableRedstoneControl: Boolean
-        get() = ENABLE_REDSTONE_CONTROL?.get() ?: true
+        get() = enableRedstoneControlConfig?.get() ?: true
 
     override val name: String
         get() = "powah"
 
     override fun addToConfig(builder: ForgeConfigSpec.Builder) {
-        ENABLE_ENERGY = builder.comment("Enabled energy integration")
+        enableEnergyConfig = builder.comment("Enabled energy integration")
             .define("enableEnergy", true)
-        ENABLE_GENERATOR = builder.comment("Enables generators integration")
+        enableGeneraotrConfig = builder.comment("Enables generators integration")
             .define("enableGenerator", true)
-        ENABLE_ENDER_CELL = builder.comment("Enables ender cell integration")
+        enableEnergyCellConfig = builder.comment("Enables ender cell integration")
             .define("enableEnderCell", true)
-        ENABLE_REACTOR = builder.comment("Enables reactor integration")
+        enableReactorConfig = builder.comment("Enables reactor integration")
             .define("enableReactor", true)
-        ENABLE_REDSTONE_CONTROL = builder.comment("Enables redstone control integration")
+        enableRedstoneControlConfig = builder.comment("Enables redstone control integration")
             .define("enableRedstoneControl", true)
     }
 }

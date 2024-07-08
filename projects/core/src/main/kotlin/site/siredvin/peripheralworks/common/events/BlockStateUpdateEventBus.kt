@@ -31,8 +31,8 @@ object BlockStateUpdateEventBus {
     @Synchronized
     fun postDebugLog() {
         CacheBuilder.newBuilder().weakKeys()
-        PeripheralWorksCore.LOGGER.info("Current last event ID: $_lastEventID")
-        PeripheralWorksCore.LOGGER.info("Current tracked pos: $listenedBlockPos")
+        PeripheralWorksCore.logger.info("Current last event ID: $_lastEventID")
+        PeripheralWorksCore.logger.info("Current tracked pos: $listenedBlockPos")
     }
 
     fun addBlockPos(vararg pos: BlockPos) {

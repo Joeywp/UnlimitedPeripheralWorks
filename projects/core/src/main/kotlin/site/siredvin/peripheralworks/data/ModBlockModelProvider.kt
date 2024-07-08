@@ -155,7 +155,14 @@ object ModBlockModelProvider {
                 Variant.variant().with(VariantProperties.MODEL, offModel),
             ).with(createBooleanDispatching(offModel, onModel, property)),
         )
-        generators.delegateItemModel(block, if (isItemConnected) { onModel } else { offModel })
+        generators.delegateItemModel(
+            block,
+            if (isItemConnected) {
+                onModel
+            } else {
+                offModel
+            },
+        )
     }
 
     fun facingBlockSwitch(
@@ -172,7 +179,14 @@ object ModBlockModelProvider {
                 Variant.variant().with(VariantProperties.MODEL, offModel),
             ).with(createBooleanDispatching(offModel, onModel, property)).with(createHorizontalFacingDispatch()),
         )
-        generators.delegateItemModel(block, if (isItemConnected) { onModel } else { offModel })
+        generators.delegateItemModel(
+            block,
+            if (isItemConnected) {
+                onModel
+            } else {
+                offModel
+            },
+        )
     }
 
     fun addModels(generators: BlockModelGenerators) {

@@ -31,7 +31,7 @@ object FabricPeripheralWorks : ModInitializer {
 
     val loader = FabricIntegrationLoader(
         FabricPeripheralWorks::class.java.getPackage().name,
-        PeripheralWorksCore.LOGGER,
+        PeripheralWorksCore.logger,
     )
 
     override fun onInitialize() {
@@ -52,7 +52,7 @@ object FabricPeripheralWorks : ModInitializer {
         loader.maybeLoadIntegration("powah").ifPresent { (it as Runnable).run() }
         loader.maybeLoadIntegration("modern_industrialization").ifPresent { (it as Runnable).run() }
         // Pretty important to setup configuration after integration loading!
-        ForgeConfigRegistry.INSTANCE.register(PeripheralWorksCore.MOD_ID, ModConfig.Type.COMMON, ConfigHolder.COMMON_SPEC)
+        ForgeConfigRegistry.INSTANCE.register(PeripheralWorksCore.MOD_ID, ModConfig.Type.COMMON, ConfigHolder.commonSpec)
         // Register block lookup
         PeripheralLookup.get().registerFallback { world, pos, state, blockEntity, context ->
             if (blockEntity is IPeripheralProvider<*>) {
