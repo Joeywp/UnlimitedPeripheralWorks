@@ -13,7 +13,7 @@ import kotlin.math.min
 
 object EnergyRefuelHandler : TurtleRefuelHandler {
     override fun refuel(turtle: ITurtleAccess, stack: ItemStack, slot: Int, limit: Int): OptionalInt {
-        if (!Configuration.enableTurtleRefulWithEnergy) {
+        if (!Configuration.enableTurtleRefuelWithEnergy) {
             return OptionalInt.empty()
         }
         val inventory = LimitedInventory(turtle.inventory, intArrayOf(slot))

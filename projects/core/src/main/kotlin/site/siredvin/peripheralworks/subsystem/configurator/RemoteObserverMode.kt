@@ -24,7 +24,7 @@ object RemoteObserverMode : ConfigurationMode {
         }
         val entity = level.getBlockEntity(configurationTarget)
         if (entity !is RemoteObserverBlockEntity) {
-            PeripheralWorksCore.LOGGER.error("Remote observer configuration mode renderer process $configurationTarget which is not remote observer")
+            PeripheralWorksCore.logger.error("Remote observer configuration mode renderer process $configurationTarget which is not remote observer")
             return InteractionResultHolder.consume(stack)
         }
         if (entity.blockPos == hit.blockPos) {

@@ -4,7 +4,11 @@ import net.minecraft.world.item.ItemStack
 import site.siredvin.peripheralium.util.NBTUtil
 
 enum class NBTCheckMode {
-    FULL, SUBSET, SUPERSET, NONE;
+    FULL,
+    SUBSET,
+    SUPERSET,
+    NONE,
+    ;
 
     fun itemStackEquals(result: ItemStack, targetingResult: ItemStack): Boolean {
         if (result.item != targetingResult.item) {

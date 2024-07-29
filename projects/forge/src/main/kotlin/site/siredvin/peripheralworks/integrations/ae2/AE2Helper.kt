@@ -21,7 +21,7 @@ object AE2Helper {
         val base = mutableMapOf<String, Any>()
         base["type"] = "fluid"
         base["name"] = XplatRegistries.FLUIDS.getKey((stack.what as AEFluidKey).fluid).toString()
-        base["count"] = stack.amount.toInt() / PeripheraliumPlatform.fluidCompactDivider
+        base["count"] = stack.amount.toDouble() / PeripheraliumPlatform.fluidCompactDivider
         return base
     }
 

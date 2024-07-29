@@ -14,18 +14,21 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeType
+import net.minecraft.world.item.crafting.ShapedRecipe
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.material.Fluid
 import site.siredvin.peripheralium.util.representation.LuaRepresentation
 import site.siredvin.peripheralium.xplat.PeripheraliumPlatform
 import site.siredvin.peripheralium.xplat.XplatRegistries
+import site.siredvin.peripheralworks.subsystem.recipe.integration.ShapedCraftingRecipeTransformer
 import java.util.*
 import java.util.stream.Collectors
 import kotlin.collections.HashMap
 
 object RecipeRegistryToolkit {
     private val GSON = Gson()
-    val SERIALIZATION_NULL = Any()
+    val SERIALIZATION_SKIP = Any()
+    val SERIALIZATION_EMPTY_SLOT = mapOf("type" to "empty")
 
     private val RECIPE_SERIALIZERS: MutableMap<Class<out Recipe<*>>, RecipeTransformer<*, Recipe<*>>> = mutableMapOf()
     private val SERIALIZERS: MutableMap<Class<*>, java.util.function.Function<Any, Any?>> = mutableMapOf()
@@ -50,7 +53,7 @@ object RecipeRegistryToolkit {
     init {
         registerSerializer(Ingredient::class.java) {
             if (it.isEmpty) {
-                return@registerSerializer SERIALIZATION_NULL
+                return@registerSerializer SERIALIZATION_EMPTY_SLOT
             }
             try {
                 return@registerSerializer GSON.fromJson(it.toJson(), HashMap::class.java)
@@ -64,7 +67,7 @@ object RecipeRegistryToolkit {
             return@registerSerializer null
         }
         registerSerializer(ItemStack::class.java) {
-            if (it.isEmpty) return@registerSerializer SERIALIZATION_NULL
+            if (it.isEmpty) return@registerSerializer SERIALIZATION_EMPTY_SLOT
             return@registerSerializer LuaRepresentation.forItemStack(it)
         }
         registerSerializer(Item::class.java, LuaRepresentation::forItem)
@@ -76,6 +79,8 @@ object RecipeRegistryToolkit {
             )
         }
         registerSerializer(Tag::class.java, PeripheraliumPlatform::nbtToLua)
+
+        registerRecipeSerializer(ShapedRecipe::class.java, ShapedCraftingRecipeTransformer)
     }
 
     fun <V : Container, T : Recipe<V>> registerRecipeSerializer(recipeClass: Class<T>, transformer: RecipeTransformer<V, T>) {
@@ -127,13 +132,13 @@ object RecipeRegistryToolkit {
         return obj
     }
 
-    fun serializeRecipe(recipe: Recipe<*>): Map<String, Any> {
+    fun serializeRecipe(recipe: Recipe<*>, registryAccess: RegistryAccess): Map<String, Any> {
         for (recipeClass in RECIPE_SERIALIZERS.keys) {
             @Suppress("UNCHECKED_CAST")
-            if (recipeClass.isInstance(recipe)) return RECIPE_SERIALIZERS[recipeClass]!!.transform(recipe as Recipe<Container>)
+            if (recipeClass.isInstance(recipe)) return RECIPE_SERIALIZERS[recipeClass]!!.transform(recipe as Recipe<Container>, registryAccess)
         }
         @Suppress("UNCHECKED_CAST")
-        return DefaultRecipeTransformer.transform(recipe as Recipe<Container>)
+        return DefaultRecipeTransformer.transform(recipe as Recipe<Container>, registryAccess)
     }
 
     @Throws(LuaException::class)

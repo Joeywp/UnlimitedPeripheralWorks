@@ -17,7 +17,7 @@ enum class UnconditionalFreeOperations(
         cooldown = builder.defineInRange(
             settingsName() + "Cooldown",
             defaultCooldown,
-            1000,
+            0,
             Int.MAX_VALUE,
         )
     }

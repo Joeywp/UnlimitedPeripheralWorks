@@ -5,25 +5,25 @@ import site.siredvin.peripheralium.api.config.IConfigHandler
 
 object Configuration : IConfigHandler {
 
-    private var ENABLE_RESONATING_CRYSTAL: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_GENERATOR_PART: ForgeConfigSpec.BooleanValue? = null
-    private var ENABLE_TANK: ForgeConfigSpec.BooleanValue? = null
+    private var enableResonatingCrystalConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableGeneratorPartConfig: ForgeConfigSpec.BooleanValue? = null
+    private var enableTankConfig: ForgeConfigSpec.BooleanValue? = null
 
     val enableResonatingCrystal: Boolean
-        get() = ENABLE_RESONATING_CRYSTAL?.get() ?: true
+        get() = enableResonatingCrystalConfig?.get() ?: true
 
     val enableGeneratorPart: Boolean
-        get() = ENABLE_GENERATOR_PART?.get() ?: true
+        get() = enableGeneratorPartConfig?.get() ?: true
 
     val enableTank: Boolean
-        get() = ENABLE_TANK?.get() ?: true
+        get() = enableTankConfig?.get() ?: true
 
     override val name: String
         get() = "deep_resonance"
 
     override fun addToConfig(builder: ForgeConfigSpec.Builder) {
-        ENABLE_RESONATING_CRYSTAL = builder.comment("Enables resonating crystal integration").define("enableResonatingCrystal", true)
-        ENABLE_GENERATOR_PART = builder.comment("Enables generator part integration").define("enableGeneratorPart", true)
-        ENABLE_TANK = builder.comment("Enables tank").define("enableTank", true)
+        enableResonatingCrystalConfig = builder.comment("Enables resonating crystal integration").define("enableResonatingCrystal", true)
+        enableGeneratorPartConfig = builder.comment("Enables generator part integration").define("enableGeneratorPart", true)
+        enableTankConfig = builder.comment("Enables tank").define("enableTank", true)
     }
 }

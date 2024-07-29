@@ -27,7 +27,7 @@ object PeripheralProxyMode : ConfigurationMode {
         }
         val entity = level.getBlockEntity(configurationTarget)
         if (entity !is PeripheralProxyBlockEntity) {
-            PeripheralWorksCore.LOGGER.error("Peripheral proxy configuration mode renderer process $configurationTarget which is not peripheral proxy")
+            PeripheralWorksCore.logger.error("Peripheral proxy configuration mode renderer process $configurationTarget which is not peripheral proxy")
             return InteractionResultHolder.consume(stack)
         }
         if (entity.blockPos == hit.blockPos) {

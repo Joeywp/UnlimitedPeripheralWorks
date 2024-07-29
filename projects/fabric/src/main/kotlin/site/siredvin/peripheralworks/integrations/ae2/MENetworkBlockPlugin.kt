@@ -126,12 +126,12 @@ class MENetworkBlockPlugin(private val level: Level, private val entity: AENetwo
                 val inputData: MutableMap<String, Any>
                 if (it.possibleInputs.size == 1) {
                     inputData = genericStackToMap(it.possibleInputs[0])
-                    inputData["count"] = (inputData["count"] as Int) * it.multiplier
+                    inputData["count"] = (inputData["count"] as Number).toDouble() * it.multiplier
                 } else {
                     val inputVariants = mutableListOf<Map<String, Any>>()
                     it.possibleInputs.forEach { pInput ->
                         val pInputResult = genericStackToMap(pInput)
-                        pInputResult["count"] = (pInputResult["count"] as Int) * it.multiplier
+                        pInputResult["count"] = (pInputResult["count"] as Number).toDouble() * it.multiplier
                         inputVariants.add(pInputResult)
                     }
                     inputData = mutableMapOf(

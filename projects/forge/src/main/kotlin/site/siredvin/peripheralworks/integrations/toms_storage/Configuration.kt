@@ -5,16 +5,16 @@ import site.siredvin.peripheralium.api.config.IConfigHandler
 
 object Configuration : IConfigHandler {
 
-    private var ENABLE_TOMS_STORAGE: ForgeConfigSpec.BooleanValue? = null
+    private var enableTomsStorageConfig: ForgeConfigSpec.BooleanValue? = null
 
     val enableTomsStorage: Boolean
-        get() = ENABLE_TOMS_STORAGE?.get() ?: true
+        get() = enableTomsStorageConfig?.get() ?: true
 
     override val name: String
         get() = "toms_storage"
 
     override fun addToConfig(builder: ForgeConfigSpec.Builder) {
-        ENABLE_TOMS_STORAGE = builder.comment("Enables toms storage integration, even if you disable this, generic inventory integration will work")
+        enableTomsStorageConfig = builder.comment("Enables toms storage integration, even if you disable this, generic inventory integration will work")
             .define("enableTomsStorage", true)
     }
 }

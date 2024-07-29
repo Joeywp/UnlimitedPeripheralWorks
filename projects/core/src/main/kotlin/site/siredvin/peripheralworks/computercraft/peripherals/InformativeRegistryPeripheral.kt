@@ -37,7 +37,10 @@ class InformativeRegistryPeripheral(
                     MethodResult.of(XplatRegistries.ITEMS.keySet().map(ResourceLocation::toString))
                 },
                 {
-                    MethodResult.of(LuaRepresentation.forItem(XplatRegistries.ITEMS.get(ResourceLocation(it))))
+                    val item = XplatRegistries.ITEMS.get(ResourceLocation(it))
+                    val base = LuaRepresentation.forItem(item)
+                    base["registryID"] = XplatRegistries.ITEMS.getId(item)
+                    return@addList MethodResult.of(base)
                 },
             )
 
@@ -48,7 +51,10 @@ class InformativeRegistryPeripheral(
                     MethodResult.of(XplatRegistries.BLOCKS.keySet().map(ResourceLocation::toString))
                 },
                 {
-                    MethodResult.of(LuaRepresentation.forBlockState(XplatRegistries.BLOCKS.get(ResourceLocation(it)).defaultBlockState()))
+                    val blockState = XplatRegistries.BLOCKS.get(ResourceLocation(it)).defaultBlockState()
+                    val base = LuaRepresentation.forBlockState(blockState)
+                    base["registryID"] = XplatRegistries.BLOCKS.getId(blockState.block)
+                    return@addList MethodResult.of(base)
                 },
             )
 
@@ -59,7 +65,10 @@ class InformativeRegistryPeripheral(
                     MethodResult.of(XplatRegistries.FLUIDS.keySet().map(ResourceLocation::toString))
                 },
                 {
-                    MethodResult.of(LuaRepresentation.forFluid(XplatRegistries.FLUIDS.get(ResourceLocation(it))))
+                    val fluid = XplatRegistries.FLUIDS.get(ResourceLocation(it))
+                    val base = LuaRepresentation.forFluid(fluid)
+                    base["registryID"] = XplatRegistries.FLUIDS.getId(fluid)
+                    return@addList MethodResult.of(base)
                 },
             )
             addList(
