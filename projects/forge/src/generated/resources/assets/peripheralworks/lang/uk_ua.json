@@ -1,5 +1,6 @@
 {
-  "aspect.integrateddynamics.read.nbt.cc_folder": "Директорія всередині комп'ютера",
+  "aspect.integrateddynamics.read.nbt.cc_output": "Інформація від комп'ютера",
+  "aspect.integrateddynamics.write.nbt.cc_input": "Інформація для комп'ютера",
   "block.peripheralworks.display_pedestal": "П'єдестал для демонстрацій",
   "block.peripheralworks.display_pedestal.tooltip": "§3§oМиленький п'єдестал, який не може зберігати предмети, але може показати будь-який предмет",
   "block.peripheralworks.entity_link": "Коннектор до сутності",
