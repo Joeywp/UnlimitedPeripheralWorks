@@ -6,10 +6,15 @@ import net.minecraft.core.Direction
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
+import site.siredvin.peripheralium.api.peripheral.IPeripheralOwner
 import site.siredvin.peripheralium.api.peripheral.IPeripheralPlugin
-import site.siredvin.peripheralium.computercraft.peripheral.PluggablePeripheral
+import site.siredvin.peripheralium.api.peripheral.IPeripheralTileEntity
+import site.siredvin.peripheralium.computercraft.peripheral.owner.BlockEntityPeripheralOwner
+import site.siredvin.peripheralium.computercraft.peripheral.owner.BlockPeripheralOwner
+import site.siredvin.peripheralium.computercraft.peripheral.owner.RawBlockEntityPeripheralOwner
 import site.siredvin.peripheralium.xplat.XplatRegistries
 import site.siredvin.peripheralworks.api.PeripheralPluginProvider
+import site.siredvin.peripheralworks.computercraft.peripherals.PluggablePeripheral
 import site.siredvin.peripheralworks.tags.BlockTags
 import java.util.function.Supplier
 
@@ -37,6 +42,16 @@ object ComputerCraftProxy {
         return plugins
     }
 
+    private fun selectPeripheralOwner(entity: BlockEntity?, pos: BlockPos, level: Level): IPeripheralOwner {
+        if (entity != null) {
+            if (entity is IPeripheralTileEntity) {
+                return BlockEntityPeripheralOwner(entity)
+            }
+            return RawBlockEntityPeripheralOwner(entity)
+        }
+        return BlockPeripheralOwner(pos, level)
+    }
+
     fun lazyPeripheralProvider(level: Level, pos: BlockPos, side: Direction): Supplier<IPeripheral>? {
         val plugins = collectPlugins(level, pos, side)
         if (plugins.isEmpty()) {
@@ -45,7 +60,7 @@ object ComputerCraftProxy {
         return Supplier {
             val state = level.getBlockState(pos)
             val entity = level.getBlockEntity(pos)
-            val peripheral = PluggablePeripheral(XplatRegistries.BLOCKS.getKey(state.block).toString(), entity ?: pos)
+            val peripheral = PluggablePeripheral(XplatRegistries.BLOCKS.getKey(state.block).toString(), selectPeripheralOwner(entity, pos, level))
             plugins.values.forEach { peripheral.addPlugin(it) }
             return@Supplier peripheral
         }
@@ -58,7 +73,7 @@ object ComputerCraftProxy {
             return null
         }
 
-        val peripheral = PluggablePeripheral(XplatRegistries.BLOCKS.getKey(state.block).toString(), entity ?: pos)
+        val peripheral = PluggablePeripheral(XplatRegistries.BLOCKS.getKey(state.block).toString(), selectPeripheralOwner(entity, pos, level))
         plugins.values.forEach { peripheral.addPlugin(it) }
         return peripheral
     }

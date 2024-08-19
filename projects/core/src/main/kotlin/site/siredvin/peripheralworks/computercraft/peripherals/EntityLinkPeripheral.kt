@@ -33,7 +33,7 @@ class EntityLinkPeripheral(private val blockEntity: EntityLinkBlockEntity, owner
         get() = initialized
 
     override fun buildPlugins() {
-        plugins?.clear()
+        plugins.clear()
         if (blockEntity.entity != null) {
             val plugins = EntityPeripheralLookup.collectPlugins(blockEntity.entity!!)
             plugins.values.forEach(::addPlugin)

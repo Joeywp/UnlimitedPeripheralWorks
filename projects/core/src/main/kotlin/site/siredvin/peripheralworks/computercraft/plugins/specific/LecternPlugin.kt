@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.LecternBlock
 import net.minecraft.world.level.block.entity.LecternBlockEntity
+import site.siredvin.peripheralium.api.peripheral.IExpandedPeripheral
 import site.siredvin.peripheralium.api.peripheral.IObservingPeripheralPlugin
-import site.siredvin.peripheralium.api.peripheral.IPluggablePeripheral
 import site.siredvin.peripheralium.extra.plugins.PeripheralPluginUtils
 import site.siredvin.peripheralium.storages.ContainerWrapper
 import site.siredvin.peripheralium.storages.item.ItemStorageExtractor
@@ -25,7 +25,7 @@ import java.util.function.Predicate
 class LecternPlugin(private val target: LecternBlockEntity) : IObservingPeripheralPlugin {
 
     companion object {
-        val OBSERVED_LECTERNS: MutableMap<BlockPos, WeakHashMap<IPluggablePeripheral, Boolean>> = mutableMapOf()
+        val OBSERVED_LECTERNS: MutableMap<BlockPos, WeakHashMap<IExpandedPeripheral, Boolean>> = mutableMapOf()
 
         fun sendEvent(pos: BlockPos, event: String, vararg arguments: Any) {
             if (OBSERVED_LECTERNS.containsKey(pos)) {
@@ -40,22 +40,22 @@ class LecternPlugin(private val target: LecternBlockEntity) : IObservingPeripher
             }
         }
 
-        fun subscribe(pos: BlockPos, peripheral: IPluggablePeripheral) {
+        fun subscribe(pos: BlockPos, peripheral: IExpandedPeripheral) {
             if (!OBSERVED_LECTERNS.containsKey(pos)) {
                 OBSERVED_LECTERNS[pos] = WeakHashMap()
             }
             OBSERVED_LECTERNS[pos]!![peripheral] = true
         }
 
-        fun unsubscribe(pos: BlockPos, peripheral: IPluggablePeripheral) {
+        fun unsubscribe(pos: BlockPos, peripheral: IExpandedPeripheral) {
             if (OBSERVED_LECTERNS.containsKey(pos)) {
                 OBSERVED_LECTERNS[pos]!!.remove(peripheral)
             }
         }
     }
 
-    private var _connectedPeripheral: IPluggablePeripheral? = null
-    override var connectedPeripheral: IPluggablePeripheral?
+    private var _connectedPeripheral: IExpandedPeripheral? = null
+    override var connectedPeripheral: IExpandedPeripheral?
         get() = _connectedPeripheral
         set(value) {
             _connectedPeripheral = value

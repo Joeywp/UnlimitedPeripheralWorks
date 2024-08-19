@@ -77,10 +77,10 @@ class RealityForgerPeripheral(
     @LuaFunction(mainThread = true)
     fun detectAnchors(): List<Map<String, Any>> {
         val data = mutableListOf<Map<String, Any>>()
-        ScanUtils.traverseBlocks(level!!, pos, interactionRadius, { _, pos ->
-            val blockEntity = level!!.getBlockEntity(pos)
+        ScanUtils.traverseBlocks(peripheralOwner.level!!, peripheralOwner.pos, interactionRadius, { _, pos ->
+            val blockEntity = peripheralOwner.level!!.getBlockEntity(pos)
             if (blockEntity is FlexibleRealityAnchorBlockEntity) {
-                data.add(LuaRepresentation.forBlockPos(pos, this.peripheralOwner.facing, this.pos))
+                data.add(LuaRepresentation.forBlockPos(pos, peripheralOwner.facing, peripheralOwner.pos))
             }
         })
         return data
@@ -91,8 +91,8 @@ class RealityForgerPeripheral(
         val poses: MutableList<BlockPos> = mutableListOf()
         val posesTable = arguments.optTable(0)
         if (posesTable.isEmpty) {
-            ScanUtils.traverseBlocks(level!!, pos, interactionRadius, { _, pos ->
-                val blockEntity = level!!.getBlockEntity(pos)
+            ScanUtils.traverseBlocks(peripheralOwner.level!!, peripheralOwner.pos, interactionRadius, { _, pos ->
+                val blockEntity = peripheralOwner.level!!.getBlockEntity(pos)
                 if (blockEntity is FlexibleRealityAnchorBlockEntity) {
                     poses.add(pos)
                 }
@@ -104,7 +104,7 @@ class RealityForgerPeripheral(
             }
         }
         poses.forEach {
-            (level?.getBlockEntity(it) as? FlexibleRealityAnchorBlockEntity)?.setMimic(null)
+            (peripheralOwner.level?.getBlockEntity(it) as? FlexibleRealityAnchorBlockEntity)?.setMimic(null)
         }
         return MethodResult.of(true)
     }
@@ -120,7 +120,7 @@ class RealityForgerPeripheral(
             if (!radiusCorrect(pos, peripheralOwner.pos, interactionRadius)) {
                 return Pair(null, "One of blocks are too far away")
             }
-            val entity = level!!.getBlockEntity(pos) as? FlexibleRealityAnchorBlockEntity
+            val entity = peripheralOwner.level!!.getBlockEntity(pos) as? FlexibleRealityAnchorBlockEntity
                 ?: return Pair(
                     null,
                     "One of provided coordinate are not correct",
@@ -176,14 +176,14 @@ class RealityForgerPeripheral(
     fun forgeReality(arguments: IArguments): MethodResult {
         val table = arguments.getTable(0)
         val targetState = LuaInterpretation.asBlockState(table)
-        if (level == null) {
+        if (peripheralOwner.level == null) {
             return MethodResult.of(null, "Level is not loaded, what?")
         }
         if (targetState.`is`(BlockTags.REALITY_FORGER_FORBIDDEN)) {
             throw LuaException("You cannot use this block, is blocklisted")
         }
-        ScanUtils.traverseBlocks(level!!, pos, interactionRadius, { _, blockPos ->
-            val blockEntity = level!!.getBlockEntity(blockPos)
+        ScanUtils.traverseBlocks(peripheralOwner.level!!, peripheralOwner.pos, interactionRadius, { _, blockPos ->
+            val blockEntity = peripheralOwner.level!!.getBlockEntity(blockPos)
             if (blockEntity is FlexibleRealityAnchorBlockEntity) {
                 forgeRealityTileEntity(blockEntity, targetState, table, arguments.optTable(1))
             }
