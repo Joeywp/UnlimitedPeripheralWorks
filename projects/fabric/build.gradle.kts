@@ -96,6 +96,14 @@ repositories {
             includeGroupByRegex("io\\.github\\.onyxstudios.*")
         }
     }
+    maven {
+        name = "devOS"
+        url = uri("https://mvn.devos.one/snapshots/")
+        content {
+            includeGroup("com.simibubi.create")
+            includeGroupByRegex("io\\.github\\.fabricators_of_create.*")
+        }
+    }
 }
 
 dependencies {
