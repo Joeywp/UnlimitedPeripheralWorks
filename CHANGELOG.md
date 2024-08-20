@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.4] - 2024-08-24
+
 ### Breaking Changed
 
 - Integrated Dynamics integration to input/output data to computer now works differently and persist only until server restarts.
