@@ -6,7 +6,7 @@ kotlin-atomicfu = "0.20.2"
 # Gradle plugins
 sponge = "0.2.1-SNAPSHOT"
 loom = "1.4.+"
-mixinGradle = "0.8.+"
+mixinGradle = "0.7.+"
 forgegradle = "6.+"
 # Core mod dependencies
 cc-tweaked = "1.112.0"
@@ -21,7 +21,7 @@ modmenu = "7.2.1"
 # Forge dependencies
 forge = "47.1.3"
 forge-kotlin = "4.11.0"
-parchment = "2023.07.16"
+parchment = "2023.09.03"
 parchmentMc = "1.20.1"
 # Extra mod dependencies
 cloth-config = "11.0.99"
@@ -81,6 +81,9 @@ cyclopscore = "1.20.1-1.18.4"  # CyclopsCore-1.19.4-1.18.2.jar
 automobility-forge = "0.4.2+1.20.1-forge"
 flux-networks = "4651164"  # Flux-Networks-1.20.1-7.2.0
 ars-nouveau = "4.7.0"
+create-forge = "0.5.1.f-26"
+flywheel-forge = "0.6.10-10"
+registrate-forge = "MC1.20-1.3.3"
 
 [libraries]
 # Base libraries
@@ -167,6 +170,9 @@ smartbrainlib = {module = "net.tslat.smartbrainlib:SmartBrainLib-forge-1.20", ve
 modonomicon = {module = "com.klikli_dev:modonomicon", version.ref="modonomicon"}
 ae2-forge = {module = "maven.modrinth:ae2", version.ref = "ae2-forge"}
 ars-nouveau = {module = "maven.modrinth:ars-nouveau", version.ref="ars-nouveau"}
+create-forge = {module = "com.simibubi.create:create-1.20.1", version.ref="create-forge", name="all"}
+flywheel-forge = {module = "com.jozufozu.flywheel:flywheel-forge-1.20.1", version.ref="flywheel-forge"}
+registrate-forge = {module = "com.tterrag.registrate:Registrate", version.ref="registrate-forge"}
 
 easyvillagers = {module = "curse.maven:easyvillagers-400514", version.ref="easyvillagers"}
 
@@ -284,6 +290,12 @@ externalMods-forge-integrations-full = [
     "powah-forge",
     "automobility-forge",
     "flux-networks",
+#    "create-forge",
+]
+externalMods-forge-integrations-raw-full = [
+
+#    "flywheel-forge",   # for create
+#    "registrate-forge",  # for create
 ]
 externalMods-forge-integrations-active = [
     "occultism",
@@ -302,6 +314,12 @@ externalMods-forge-integrations-active = [
     "automobility-forge",
     "flux-networks",
     "ars-nouveau",
+#    "create-forge",
+]
+externalMods-forge-integrations-raw-active = [
+
+#    "flywheel-forge",   # for create
+#    "registrate-forge",  # for create
 ]
 externalMods-forge-integrations-activedep = [
     "curios-forge", # by occultism right now

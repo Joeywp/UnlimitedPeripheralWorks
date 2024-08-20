@@ -95,6 +95,7 @@ object ForgePeripheralWorks {
         loader.maybeLoadIntegration("powah").ifPresent { (it as Runnable).run() }
         loader.maybeLoadIntegration("automobility").ifPresent { (it as Runnable).run() }
         loader.maybeLoadIntegration("fluxnetworks").ifPresent { (it as Runnable).run() }
+        loader.maybeLoadIntegration("create").ifPresent { (it as Runnable).run() }
         // Register peripheral provider
         ForgeComputerCraftAPI.registerPeripheralProvider { world, pos, side ->
             val entity = world.getBlockEntity(pos)
