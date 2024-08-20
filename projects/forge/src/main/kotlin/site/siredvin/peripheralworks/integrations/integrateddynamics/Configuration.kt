@@ -5,8 +5,11 @@ import site.siredvin.peripheralium.api.config.IConfigHandler
 
 object Configuration : IConfigHandler {
 
+    private const val DEFAULT_MAX_JSON_SIZE = 4_000
+
     private var enableVariableStoreConfig: ForgeConfigSpec.BooleanValue? = null
     private var enableComputerAspectConfig: ForgeConfigSpec.BooleanValue? = null
+    private var maxJSONSizeConfig: ForgeConfigSpec.IntValue? = null
 
     val enableVariableStore: Boolean
         get() = enableVariableStoreConfig?.get() ?: true
@@ -14,11 +17,15 @@ object Configuration : IConfigHandler {
     val enableComputerAspect: Boolean
         get() = enableComputerAspectConfig?.get() ?: true
 
+    val maxJsonSize: Int
+        get() = maxJSONSizeConfig?.get() ?: DEFAULT_MAX_JSON_SIZE
+
     override val name: String
         get() = "integrateddynamics"
 
     override fun addToConfig(builder: ForgeConfigSpec.Builder) {
         enableVariableStoreConfig = builder.comment("Enables variable store integration").define("enableVariableStore", true)
         enableComputerAspectConfig = builder.comment("Enables computer aspect for block reader").define("enableComputerAspect", true)
+        maxJSONSizeConfig = builder.comment("Max config for output json for machine reader, can impact server memory").defineInRange("maxJSONSizeConfig", DEFAULT_MAX_JSON_SIZE, 100, Int.MAX_VALUE)
     }
 }

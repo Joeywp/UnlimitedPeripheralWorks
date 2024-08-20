@@ -9,8 +9,8 @@ loom = "1.4.+"
 mixinGradle = "0.8.+"
 forgegradle = "6.+"
 # Core mod dependencies
-cc-tweaked = "1.111.0"
-peripheralium = "0.6.16-pre.1"
+cc-tweaked = "1.112.0"
+peripheralium = "0.6.16-pre.9"
 mixin = "0.8.5"
 # Fabric dependencies
 fabric-api = "0.92.0+1.20.1"
@@ -19,8 +19,8 @@ fabric-kotlin = "1.11.0+kotlin.2.0.0"
 forgeconfigapirt-fabric = "8.0.0"
 modmenu = "7.2.1"
 # Forge dependencies
-forge = "47.1.0"
-forge-kotlin = "4.4.0"
+forge = "47.1.3"
+forge-kotlin = "4.11.0"
 parchment = "2023.07.16"
 parchmentMc = "1.20.1"
 # Extra mod dependencies
@@ -66,9 +66,9 @@ modonomicon = "1.20.1-1.37.0"
 tomstorage-forge = "1.20-1.6.1"
 easyvillagers = "4584220"  # [1.20.1] Easy Villagers 1.20.1-1.0.8
 curios-forge = "5.2.0-beta.3+1.20.1"
-geckolib-forge = "4.2"
+geckolib-forge = "4.4"
 smartbrainlib = "1.11"
-ae2-forge = "forge-15.0.4-beta"
+ae2-forge = "15.2.13"
 natures-compass-forge = "4591760"  # NaturesCompass-1.20.1-1.11.1-forge.jar
 mcjtylib = "1.20-8.0.0"
 rftools-base = "1.20-5.0.0"
@@ -80,6 +80,7 @@ commoncapabilites = "1.20.1-2.9.0"  # CommonCapabilities-1.19.4-2.9.0.jar
 cyclopscore = "1.20.1-1.18.4"  # CyclopsCore-1.19.4-1.18.2.jar
 automobility-forge = "0.4.2+1.20.1-forge"
 flux-networks = "4651164"  # Flux-Networks-1.20.1-7.2.0
+ars-nouveau = "4.7.0"
 
 [libraries]
 # Base libraries
@@ -161,10 +162,11 @@ pal = {module = "io.github.ladysnake:PlayerAbilityLib", version.ref="pal"}
 # Forge integration dependencies
 occultism = {module = "maven.modrinth:occultism", version.ref = "occultism"}
 curios-forge = {module = "top.theillusivec4.curios:curios-forge", version.ref = "curios-forge"}
-gecolib-forge = {module = "software.bernie.geckolib:geckolib-forge-1.20", version.ref = "geckolib-forge"}
+gecolib-forge = {module = "software.bernie.geckolib:geckolib-forge-1.20.1", version.ref = "geckolib-forge"}
 smartbrainlib = {module = "net.tslat.smartbrainlib:SmartBrainLib-forge-1.20", version.ref = "smartbrainlib"}
 modonomicon = {module = "com.klikli_dev:modonomicon", version.ref="modonomicon"}
 ae2-forge = {module = "maven.modrinth:ae2", version.ref = "ae2-forge"}
+ars-nouveau = {module = "maven.modrinth:ars-nouveau", version.ref="ars-nouveau"}
 
 easyvillagers = {module = "curse.maven:easyvillagers-400514", version.ref="easyvillagers"}
 
@@ -206,7 +208,7 @@ forge-base = ["cc-tweaked-forge", "peripheralium-forge"]
 externalMods-forge-runtime = [
     "jei-forge",
     "architectury-forge",
-    "cloth-config-forge"
+    "cloth-config-forge",
 ]
 externalMods-fabric-runtime = [
     "rei-fabric",
@@ -243,7 +245,7 @@ externalMods-fabric-integrations-full = [
     "jsonem", # required by automobility
     "modern-industrialization",
     "magna",  # required by MI
-    "pal",  # required by MI
+    "pal",  # required by MI,
 ]
 externalMods-fabric-integrations-active = [
     "nature-compass-fabric",
@@ -263,7 +265,7 @@ externalMods-fabric-integrations-active = [
 ]
 externalMods-fabric-integrations-activedep = [
     "reborncore",  # required by techreborn
-    "supermartijn642s-core-lib-fabric",  # required by additional-lanterns,
+    "supermartijn642s-core-lib-fabric",  # required by additional-lanterns
 ]
 
 externalMods-forge-integrations-full = [
@@ -287,7 +289,7 @@ externalMods-forge-integrations-active = [
     "occultism",
     "smartbrainlib",  # by occultism right now
     "easyvillagers",
-    "ae2-forge",
+#    "ae2-forge",
     "integrateddynamics",
     "cyclopscore", # by integrateddynamics, required for class typing
     "nature-compass-forge",
@@ -299,6 +301,7 @@ externalMods-forge-integrations-active = [
     "powah-forge",
     "automobility-forge",
     "flux-networks",
+    "ars-nouveau",
 ]
 externalMods-forge-integrations-activedep = [
     "curios-forge", # by occultism right now

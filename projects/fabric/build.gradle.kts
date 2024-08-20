@@ -99,22 +99,11 @@ repositories {
     maven {
         name = "devOS"
         url = uri("https://mvn.devos.one/snapshots/")
-//        content {
-//            includeGroup("com.simibubi.create")
-//        }
+        content {
+            includeGroup("com.simibubi.create")
+            includeGroupByRegex("io\\.github\\.fabricators_of_create.*")
+        }
     }
-    maven { url = uri("https://maven.shedaniel.me/") } // Cloth Config, REI
-    maven { url = uri("https://dvs1.progwml6.com/files/maven/") } // JEI
-    maven { url = uri("https://maven.parchmentmc.org") } // Parchment mappings
-    maven { url = uri("https://maven.quiltmc.org/repository/release") } // Quilt Mappings
-    maven { url = uri("https://api.modrinth.com/maven") } // LazyDFU
-    maven { url = uri("https://maven.terraformersmc.com/releases/") } // Mod Menu
-    maven { url = uri("https://mvn.devos.one/snapshots/") } // Create, Porting Lib, Forge Tags, Milk Lib, Registrate
-    maven { url = uri("https://cursemaven.com") } // Forge Config API Port
-    maven { url = uri("https://maven.jamieswhiteshirt.com/libs-release") } // Reach Entity Attributes
-    maven { url = uri("https://jitpack.io/") } // Mixin Extras, Fabric ASM
-    maven { url = uri("https://maven.tterrag.com/") }
-    mavenCentral() // Flywheel
 }
 
 dependencies {

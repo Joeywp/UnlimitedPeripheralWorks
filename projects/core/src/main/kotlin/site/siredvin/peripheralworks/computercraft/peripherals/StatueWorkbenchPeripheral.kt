@@ -22,7 +22,7 @@ class StatueWorkbenchPeripheral(
         get() = PeripheralWorksConfig.enableStatueWorkbench
 
     protected fun getStatue(): Optional<FlexibleStatueBlockEntity> {
-        val blockEntity = level!!.getBlockEntity(pos.offset(0, 1, 0))
+        val blockEntity = peripheralOwner.level!!.getBlockEntity(peripheralOwner.pos.offset(0, 1, 0))
         return if (blockEntity !is FlexibleStatueBlockEntity) Optional.empty() else Optional.of(blockEntity)
     }
 

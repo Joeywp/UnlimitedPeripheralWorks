@@ -48,7 +48,7 @@ class RecipeRegistryPeripheral(
 
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
-        return MethodResult.of(level!!.recipeManager.getAllRecipesFor(type).map { it.id.toString() })
+        return MethodResult.of(peripheralOwner.level!!.recipeManager.getAllRecipesFor(type).map { it.id.toString() })
     }
 
     @LuaFunction
@@ -60,9 +60,9 @@ class RecipeRegistryPeripheral(
         @Suppress("UNCHECKED_CAST")
         val type = XplatRegistries.RECIPE_TYPES.tryGet(recipeTypeID) as? RecipeType<Recipe<Container>> ?: return MethodResult.of(false, "Cannot find recipe type $recipeTypeID")
         return MethodResult.of(
-            level!!.recipeManager.getAllRecipesFor(type)
+            peripheralOwner.level!!.recipeManager.getAllRecipesFor(type)
                 .filter { it.id == recipeID }
-                .map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) }
+                .map { RecipeRegistryToolkit.serializeRecipe(it, peripheralOwner.level!!.registryAccess()) }
                 .toList(),
         )
     }
@@ -84,10 +84,10 @@ class RecipeRegistryPeripheral(
         return MethodResult.of(
             recipeTypes.flatMap {
                 @Suppress("UNCHECKED_CAST")
-                level!!.recipeManager.getAllRecipesFor(it as RecipeType<Recipe<Container>>).stream().filter { recipe ->
-                    recipe.getResultItem(level!!.registryAccess()).`is`(targetItem)
+                peripheralOwner.level!!.recipeManager.getAllRecipesFor(it as RecipeType<Recipe<Container>>).stream().filter { recipe ->
+                    recipe.getResultItem(peripheralOwner.level!!.registryAccess()).`is`(targetItem)
                 }.toList()
-            }.map { RecipeRegistryToolkit.serializeRecipe(it, level!!.registryAccess()) },
+            }.map { RecipeRegistryToolkit.serializeRecipe(it, peripheralOwner.level!!.registryAccess()) },
         )
     }
 

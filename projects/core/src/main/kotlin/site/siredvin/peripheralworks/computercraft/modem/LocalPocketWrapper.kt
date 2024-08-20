@@ -6,7 +6,9 @@ import dan200.computercraft.api.pocket.IPocketUpgrade
 import dan200.computercraft.api.upgrades.UpgradeData
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.phys.Vec3
 import site.siredvin.peripheralworks.computercraft.peripherals.pocket.PocketPeripheraliumHubPeripheral
 
 class LocalPocketWrapper(val access: IPocketAccess, val upgrade: IPocketUpgrade, val id: String, private val origin: PocketPeripheraliumHubPeripheral) : IPocketAccess {
@@ -15,6 +17,14 @@ class LocalPocketWrapper(val access: IPocketAccess, val upgrade: IPocketUpgrade,
 
     val upgradeData: UpgradeData<IPocketUpgrade>
         get() = UpgradeData.of(upgrade, upgradeNBTData)
+
+    override fun getLevel(): ServerLevel {
+        return access.level
+    }
+
+    override fun getPosition(): Vec3 {
+        return access.position
+    }
 
     override fun getEntity(): Entity? {
         return access.entity
@@ -34,6 +44,14 @@ class LocalPocketWrapper(val access: IPocketAccess, val upgrade: IPocketUpgrade,
 
     override fun setLight(colour: Int) {
         access.light = colour
+    }
+
+    override fun getUpgrade(): UpgradeData<IPocketUpgrade> {
+        return upgradeData
+    }
+
+    override fun setUpgrade(p0: UpgradeData<IPocketUpgrade>?) {
+        throw IllegalArgumentException("You should not set upgrade for this wrapper")
     }
 
     override fun getUpgradeNBTData(): CompoundTag {

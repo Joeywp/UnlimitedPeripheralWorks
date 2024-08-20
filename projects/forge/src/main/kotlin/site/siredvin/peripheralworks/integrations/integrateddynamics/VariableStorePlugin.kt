@@ -17,15 +17,9 @@ import site.siredvin.peripheralium.storages.item.SlottedItemStorage
 
 class VariableStorePlugin(private val store: BlockEntityVariablestore) : AbstractInventoryPlugin() {
 
-    override val level: Level
-    override val storage: SlottedItemStorage
-    private val context: ValueDeseralizationContext
-
-    init {
-        storage = ItemHandlerWrapper(store.inventory.itemHandler)
-        level = store.level!!
-        context = ValueDeseralizationContext.of(level)
-    }
+    override val level: Level = store.level!!
+    override val storage: SlottedItemStorage = ItemHandlerWrapper(store.inventory.itemHandler)
+    private val context: ValueDeseralizationContext = ValueDeseralizationContext.of(level)
 
     fun parseEntry(facade: IVariableFacade): Map<String, Any> {
         val dataMap = mutableMapOf<String, Any>()

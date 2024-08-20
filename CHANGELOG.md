@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `registryID` added to `describe` function of informative registry
 
+### Changed
+
+- Integrated Dynamics integration to input/output data to computer now works differently and persist only until server restarts.
+
 ### Fixed
 
 - Recipe registry is usable again (by [Janrupf](https://github.com/Janrupf))
