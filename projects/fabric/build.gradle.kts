@@ -102,6 +102,23 @@ repositories {
         content {
             includeGroup("com.simibubi.create")
             includeGroupByRegex("io\\.github\\.fabricators_of_create.*")
+            includeGroup("com.tterrag.registrate_fabric")
+            includeGroup("io.github.tropheusj")
+        }
+    }
+    maven {
+        name = "github packages via jitpack"
+        url = uri("https://jitpack.io")
+        content {
+            includeGroup("com.github.llamalad7.mixinextras")
+            includeGroup("com.github.Chocohead")
+        }
+    }
+    maven {
+        name = "Mod maven"
+        url = uri("https://modmaven.dev/")
+        content {
+            includeGroup("com.jozufozu.flywheel")
         }
     }
 }

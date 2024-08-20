@@ -9,15 +9,17 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 import site.siredvin.peripheralium.xplat.XplatRegistries
 
-class CreateFilterableBehavior(
+class CreateFilterableBehaviorPeripheralPlugin(
     blockEntity: SmartBlockEntity,
     private val filterableBehavior: FilteringBehaviour,
-) : CreateSmartBlock<SmartBlockEntity>(blockEntity) {
+) : CreateSmartBlockPeripheralPlugin<SmartBlockEntity>(blockEntity) {
     @LuaFunction(mainThread = true)
     fun getFilterName(): MethodResult {
-        return MethodResult.of(filterableBehavior.filter?.item?.let {
-            XplatRegistries.ITEMS.getKey(it).toString()
-        })
+        return MethodResult.of(
+            filterableBehavior.filter?.item?.let {
+                XplatRegistries.ITEMS.getKey(it).toString()
+            },
+        )
     }
 
     @LuaFunction(mainThread = true)

@@ -6,19 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking Changed
+
+- Integrated Dynamics integration to input/output data to computer now works differently and persist only until server restarts.
+
 ### Added
 
 - `registryID` added to `describe` function of informative registry
-
-### Changed
-
-- Integrated Dynamics integration to input/output data to computer now works differently and persist only until server restarts.
+- Create integration
 
 ### Fixed
 
 - Recipe registry is usable again (by [Janrupf](https://github.com/Janrupf))
 - Cooldowns can be set to 0 now
 - `getPatternsFor` Double/Int handling
+- A lot of "not attached" or random `nil` for inventory and item storages, because of peripheral equality checks
 
 ## [1.4.3] - 2024-02-01
 

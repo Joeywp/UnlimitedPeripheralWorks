@@ -5,16 +5,16 @@ import site.siredvin.peripheralium.api.config.IConfigHandler
 
 object Configuration : IConfigHandler {
 
-    private var ENABLE_CREATE_ENTITY: ForgeConfigSpec.BooleanValue? = null
+    private var enableCreateIntegrationConfig: ForgeConfigSpec.BooleanValue? = null
 
-    val enableCreate: Boolean
-        get() = ENABLE_CREATE_ENTITY?.get() ?: true
+    val enableCreateIntegration: Boolean
+        get() = enableCreateIntegrationConfig?.get() ?: true
 
     override val name: String
         get() = "create"
 
     override fun addToConfig(builder: ForgeConfigSpec.Builder) {
-        ENABLE_CREATE_ENTITY = builder.comment("Enables create integration")
-            .define("enableCreate", true)
+        enableCreateIntegrationConfig = builder.comment("Enables create integration")
+            .define("enableCreateIntegration", true)
     }
 }
